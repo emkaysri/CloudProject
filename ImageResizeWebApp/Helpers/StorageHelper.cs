@@ -30,11 +30,7 @@ namespace ImageResizeWebApp.Helpers
                                                             AzureStorageConfig _storageConfig)
         {
             // Create a URI to the blob
-            Uri blobUri = new Uri("https://" +
-                                  _storageConfig.AccountName +
-                                  ".blob.core.windows.net/" +
-                                  _storageConfig.ImageContainer +
-                                  "/original/" + fileName);
+            Uri blobUri = new Uri($"https://{_storageConfig.AccountName}.blob.core.windows.net/{_storageConfig.ImageContainer}/{Guid.NewGuid()}/file/{fileName}");
 
             // Create StorageSharedKeyCredentials object by reading
             // the values from the configuration (appsettings.json)
@@ -67,10 +63,7 @@ namespace ImageResizeWebApp.Helpers
             {
                 foreach (BlobItem blobItem in container.GetBlobs())
                 {
-                    if (!container.Uri.ToString().Contains("original"))
-                    {
                         blurredUrls.Add(container.Uri + "/" + blobItem.Name);
-                    }
                 }
             }
 
