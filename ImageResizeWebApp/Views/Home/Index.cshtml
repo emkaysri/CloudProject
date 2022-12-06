@@ -101,7 +101,7 @@
         // Fetch images
         $.get("api/Images/thumbnails", function (fetchedImageLinks) {
             console.log(fetchedImageLinks)
-
+            fetchedImageLinks = fetchedImageLinks.find(s => s.includes(filename))
             // Check if anything is in there
             if ( _.isEmpty(fetchedImageLinks) ){
                 console.log('empty fetched')
@@ -111,7 +111,7 @@
                 if ( _.isEmpty(gallery) ) {
                     // initialize gallery
                     gallery = blueimp.Gallery(
-                                "", // gallery links array
+                                fetchedImageLinks, // gallery links array
                                 {
                                     container: '#blueimp-gallery-carousel',
                                     carousel: true
