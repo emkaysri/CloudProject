@@ -42,7 +42,6 @@ namespace ImageResizeWebApp.Helpers
 
             // Upload the file
             await blobClient.UploadAsync(fileStream, overwrite: true);
-
             return await Task.FromResult(true);
         }
 
