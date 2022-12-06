@@ -56,7 +56,7 @@ namespace ImageResizeWebApp.Helpers
             BlobServiceClient blobServiceClient = new BlobServiceClient(accountUri);
 
             // Get reference to the container
-            BlobContainerClient container = blobServiceClient.GetBlobContainerClient(getOrg ? _storageConfig.OrgContainer : _storageConfig.ThumbnailContainer);
+            BlobContainerClient container = blobServiceClient.GetBlobContainerClient(getOrg ? _storageConfig.ImageContainer : _storageConfig.ThumbnailContainer);
 
             if (container.Exists())
             {
