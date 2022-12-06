@@ -45,7 +45,7 @@ namespace ImageResizeWebApp.Helpers
             return await Task.FromResult(true);
         }
 
-        public static async Task<List<string>> GetBlurredUrls(AzureStorageConfig _storageConfig)
+        public static async Task<List<string>> GetBlurredUrls(AzureStorageConfig _storageConfig, bool getOrg = false)
         {
             List<string> blurredUrls = new List<string>();
 
@@ -56,7 +56,7 @@ namespace ImageResizeWebApp.Helpers
             BlobServiceClient blobServiceClient = new BlobServiceClient(accountUri);
 
             // Get reference to the container
-            BlobContainerClient container = blobServiceClient.GetBlobContainerClient(_storageConfig.ThumbnailContainer);
+            BlobContainerClient container = blobServiceClient.GetBlobContainerClient(getOrg ? _storageConfig.OrgContainer : _storageConfig.ThumbnailContainer);
 
             if (container.Exists())
             {

@@ -92,5 +92,26 @@ namespace ImageResizeWebApp.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        // GET /api/images/blurred
+        [HttpGet("original")]
+        public async Task<IActionResult> GetOriginal()
+        {
+            try
+            {
+                if (storageConfig.AccountKey == string.Empty || storageConfig.AccountName == string.Empty)
+                    return BadRequest("Sorry, can't retrieve your Azure storage details from appsettings.js, make sure that you add Azure storage details there.");
+
+                if (storageConfig.ImageContainer == string.Empty)
+                    return BadRequest("Please provide a name for your image container in Azure blob storage.");
+
+                List<string> thumbnailUrls = await StorageHelper.GetBlurredUrls(storageConfig, true);
+                return new ObjectResult(thumbnailUrls);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
