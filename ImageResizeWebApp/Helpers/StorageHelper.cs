@@ -30,7 +30,7 @@ namespace ImageResizeWebApp.Helpers
                                                             AzureStorageConfig _storageConfig)
         {
             // Create a URI to the blob
-            Uri blobUri = new Uri($"https://{_storageConfig.AccountName}.blob.core.windows.net/{_storageConfig.ImageContainer}/{Guid.NewGuid()}/file/{fileName}");
+            Uri blobUri = new Uri($"https://{_storageConfig.AccountName}.blob.core.windows.net/{fileName}");
 
             // Create StorageSharedKeyCredentials object by reading
             // the values from the configuration (appsettings.json)
