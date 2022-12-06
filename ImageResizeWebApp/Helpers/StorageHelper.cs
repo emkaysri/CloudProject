@@ -67,7 +67,10 @@ namespace ImageResizeWebApp.Helpers
             {
                 foreach (BlobItem blobItem in container.GetBlobs())
                 {
-                    thumbnailUrls.Add(container.Uri + "/" + blobItem.Name);
+                    if (!container.Uri.ToString().Contains("original"))
+                    {
+                        thumbnailUrls.Add(container.Uri + "/" + blobItem.Name);
+                    }
                 }
             }
 
