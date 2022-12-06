@@ -97,7 +97,7 @@
                 // do nothing  
             } else {
                 // update gallery with new image urls. Only compare actual url without SAS token query string
-                var newImageLinks = fetchedImageLinks.find(s => s.includes(filename));
+                var newImageLinks = fetchedImageLinks.find(s => s.includes(filename) && s.includes("/blur/"));
                 document.querySelector("#image").src = newImageLinks;
             }     
         });
