@@ -93,7 +93,7 @@ namespace ImageResizeWebApp.Controllers
             }
         }
 
-        // GET /api/images/blurred
+        // GET /api/images/original
         [HttpGet("original")]
         public async Task<IActionResult> GetOriginal()
         {

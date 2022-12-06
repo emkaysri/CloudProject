@@ -3,6 +3,7 @@ using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using ImageResizeWebApp.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging.AzureAppServices.Internal;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -57,7 +58,7 @@ namespace ImageResizeWebApp.Helpers
 
             // Get reference to the container
             BlobContainerClient container = blobServiceClient.GetBlobContainerClient(getOrg ? _storageConfig.ImageContainer : _storageConfig.ThumbnailContainer);
-
+            System.Diagnostics.Trace.TraceInformation($"Trying to access {container.Uri}");
             if (container.Exists())
             {
                 foreach (BlobItem blobItem in container.GetBlobs())
