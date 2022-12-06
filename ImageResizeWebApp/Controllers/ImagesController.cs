@@ -59,7 +59,7 @@ namespace ImageResizeWebApp.Controllers
                 if (isUploaded)
                 {
                     if (storageConfig.ThumbnailContainer != string.Empty)
-                        return new AcceptedAtActionResult("GetThumbNails", "Images", null, null);
+                        return new AcceptedAtActionResult("GetBlurred", "Images", null, null);
                     else
                         return new AcceptedResult();
                 }
@@ -72,9 +72,9 @@ namespace ImageResizeWebApp.Controllers
             }
         }
 
-        // GET /api/images/thumbnails
-        [HttpGet("thumbnails")]
-        public async Task<IActionResult> GetThumbNails()
+        // GET /api/images/blurred
+        [HttpGet("blurred")]
+        public async Task<IActionResult> GetBlurredNails()
         {
             try
             {
@@ -84,7 +84,7 @@ namespace ImageResizeWebApp.Controllers
                 if (storageConfig.ImageContainer == string.Empty)
                     return BadRequest("Please provide a name for your image container in Azure blob storage.");
 
-                List<string> thumbnailUrls = await StorageHelper.GetThumbNailUrls(storageConfig);
+                List<string> thumbnailUrls = await StorageHelper.GetBlurredUrls(storageConfig);
                 return new ObjectResult(thumbnailUrls);            
             }
             catch (Exception ex)

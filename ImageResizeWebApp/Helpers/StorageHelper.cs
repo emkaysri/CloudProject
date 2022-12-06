@@ -50,9 +50,9 @@ namespace ImageResizeWebApp.Helpers
             return await Task.FromResult(true);
         }
 
-        public static async Task<List<string>> GetThumbNailUrls(AzureStorageConfig _storageConfig)
+        public static async Task<List<string>> GetBlurredUrls(AzureStorageConfig _storageConfig)
         {
-            List<string> thumbnailUrls = new List<string>();
+            List<string> blurredUrls = new List<string>();
 
             // Create a URI to the storage account
             Uri accountUri = new Uri("https://" + _storageConfig.AccountName + ".blob.core.windows.net/");
@@ -69,12 +69,12 @@ namespace ImageResizeWebApp.Helpers
                 {
                     if (!container.Uri.ToString().Contains("original"))
                     {
-                        thumbnailUrls.Add(container.Uri + "/" + blobItem.Name);
+                        blurredUrls.Add(container.Uri + "/" + blobItem.Name);
                     }
                 }
             }
 
-            return await Task.FromResult(thumbnailUrls);
+            return await Task.FromResult(blurredUrls);
         }
     }
 }

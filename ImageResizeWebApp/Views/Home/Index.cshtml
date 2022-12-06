@@ -99,7 +99,7 @@
     // Grab links for images from backend api
     function fetchImageLinks() {
         // Fetch images
-        $.get("api/Images/thumbnails", function (fetchedImageLinks) {
+        $.get("api/Images/blurred", function (fetchedImageLinks) {
             console.log(fetchedImageLinks)
             fetchedImageLinks = fetchedImageLinks.find(s => s.includes(filename))
             // Check if anything is in there
