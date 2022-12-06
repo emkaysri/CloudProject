@@ -74,7 +74,7 @@ namespace ImageResizeWebApp.Controllers
 
         // GET /api/images/blurred
         [HttpGet("blurred")]
-        public async Task<IActionResult> GetBlurredNails()
+        public async Task<IActionResult> GetBlurred()
         {
             try
             {
